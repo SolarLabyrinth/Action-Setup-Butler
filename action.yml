@@ -1,0 +1,44 @@
+name: "Action Setup Butler"
+
+description: "A GitHub Action to install Itch.io's Butler on a GitHub Actions runner."
+
+branding:
+  icon: "play"
+  color: "blue"
+
+inputs:
+  key:
+    description: "Your Itch.io API Key"
+    type: string
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Download Butler
+      run: |
+        INSTALL_DIR=${HOME}/.butler-install-dir
+        mkdir -p $INSTALL_DIR
+        echo "Creating $INSTALL_DIR"
+
+        BUTLER_DOWNLOAD_URL=https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+
+        echo "Downloading: $BUTLER_DOWNLOAD_URL"
+
+        cd $INSTALL_DIR
+
+        wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+        unzip butler.zip
+        rm -rf butler.zip
+
+        chmod +x butler
+
+        ls -la $INSTALL_DIR
+        ./butler -V
+
+        echo $INSTALL_DIR >> $GITHUB_PATH
+
+    - name: Save Butler API Key
+      run: |
+        mkdir -p ~/.config/itch
+        echo "${{ inputs.key }}" > ~/.config/itch/butler_creds

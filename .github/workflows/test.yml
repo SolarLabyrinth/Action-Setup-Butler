@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: solarlabyrinth/action-setup-godot@v2
+        with:
+          version: 4.4.1-stable
+
+      - name: Build Game
+        run: |
+          mkdir -p ./build
+          godot --headless --export-debug "Windows" ./build/game.exe
+
+      - name: Setup Butler
+        uses: ./
+        with:
+          key: ${{ secrets.BUTLER_API_KEY }}
+
+      - name: Upload to Itch
+        run: butler push ./build solarlabyrinth/github-action-test:windows
