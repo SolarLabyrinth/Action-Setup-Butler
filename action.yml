@@ -16,6 +16,7 @@ runs:
   using: "composite"
   steps:
     - name: Download Butler
+      shell: bash
       run: |
         INSTALL_DIR=${HOME}/.butler-install-dir
         mkdir -p $INSTALL_DIR
@@ -39,6 +40,7 @@ runs:
         echo $INSTALL_DIR >> $GITHUB_PATH
 
     - name: Save Butler API Key
+      shell: bash
       run: |
         mkdir -p ~/.config/itch
         echo "${{ inputs.key }}" > ~/.config/itch/butler_creds
