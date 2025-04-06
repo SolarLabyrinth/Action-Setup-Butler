@@ -28,7 +28,7 @@ runs:
 
         cd $INSTALL_DIR
 
-        wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+        wget -O butler.zip $BUTLER_DOWNLOAD_URL
         unzip butler.zip
         rm -rf butler.zip
 
@@ -44,3 +44,4 @@ runs:
       run: |
         mkdir -p ~/.config/itch
         echo "${{ inputs.key }}" > ~/.config/itch/butler_creds
+        chmod 600 ~/.config/itch/butler_creds
