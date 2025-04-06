@@ -19,8 +19,9 @@ jobs:
 
       - name: Build Game
         run: |
+          cd ./project
           mkdir -p ./build
-          godot --headless --export-debug "Windows" ./build/game.exe
+          godot --headless --export-debug "Linux" ./build/game.x86_64
 
       - name: Setup Butler
         uses: ./
