@@ -10,7 +10,7 @@ This action will provide access to the butler binary on your runner's path. You 
 
 ```yml
 - name: Setup Butler
-  uses: SolarLabyrinth/Action-Setup-Butler@v1
+  uses: solarlabyrinth/action-setup-butler@v1
   with:
     key: ${{ secrets.BUTLER_API_KEY }}
 
