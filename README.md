@@ -1,8 +1,8 @@
 # Action: Setup Butler
 
-A GitHub Action to install Itch.io's Butler on a GitHub Actions runner.
+A GitHub Action to install Itch.io's Butler on an Ubuntu GitHub Actions runner.
 
-> Note: Only supported on Ubuntu runners.
+NOTE: Butler recently changed their CI domain name. Update to v2 if your builds are failing.
 
 ## Usage
 
@@ -10,7 +10,7 @@ This action will provide access to the butler binary on your runner's path. You 
 
 ```yml
 - name: Setup Butler
-  uses: solarlabyrinth/action-setup-butler@v1
+  uses: solarlabyrinth/action-setup-butler@v2
   with:
     key: ${{ secrets.BUTLER_API_KEY }}
 
