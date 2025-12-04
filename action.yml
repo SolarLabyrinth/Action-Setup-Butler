@@ -22,7 +22,7 @@ runs:
         mkdir -p $INSTALL_DIR
         echo "Creating $INSTALL_DIR"
 
-        BUTLER_DOWNLOAD_URL=https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+        BUTLER_DOWNLOAD_URL=https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
 
         echo "Downloading: $BUTLER_DOWNLOAD_URL"
 
